@@ -3,16 +3,19 @@ package com.tasktracker;
 import com.tasktracker.model.Task;
 import com.tasktracker.model.TaskStatus;
 import com.tasktracker.repository.TaskRepository;
+import com.tasktracker.repository.TaskStorage;
+import com.tasktracker.service.TaskOperations;
 import com.tasktracker.service.TaskService;
 
 import java.io.IOException;
 import java.util.List;
 
 public class Main {
-    private static final TaskService taskService = new TaskService(new TaskRepository());
+    private static final TaskStorage taskStorage = new TaskRepository();
+    private static final TaskOperations taskService = new TaskService(taskStorage);
 
     public static void main(String[] args) {
-        
+        args = new String[] { "add", "test89" };
         //args = new String[] { "add", "test6" }; => add new task
         //args = new String[] { "update", "1", "test6" }; => update task
         //args = new String[] { "delete", "1" }; => delete task
